@@ -6,18 +6,21 @@
     <title>Using $http Service</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" ng-controller='NarrowItDownController as narrowIt'>
     <h1>Narrow Down Your Chinese Menu Choice</h1>
-    <div ng-controller='NarrowItDownController as narrowIt'>
+    <div >
       <h3>List of Menu Categories</h3>
       <div class="form-group">
         <input type="text" ng-model="narrowIt.searchItem" placeholder="search term" class="form-control">
       </div>
       <div class="form-group narrow-button">
-         <button class="btn btn-primary" ng-click="narrowIt.doIt();">
+         <button class="btn btn-primary" ng-click="narrowIt.doIt();" >
              Narrow It Down For Me!</button>
       </div>
-      <found-items items=narrowIt.Items on-remove="narrowIt.removeItem(index)"> </found-items>
+      <found-items 
+         items="narrowIt.Items" 
+         on-remove="narrowIt.removeItem"> 
+       </found-items>
     </div>
   </div>
     <script src="angular.min.js"></script>

@@ -11,9 +11,12 @@ function FoundItemsDirective() {
   var ddo = {
     templateUrl: 'foundItems.html',
     scope: {
-    items: '<',
+    items: '=',
+    check: '<',
     onRemove: '&'
-    }
+    },
+    controller: NarrowItDownController,
+    controllerAs: 'narrowIt',
   }
  return ddo;
 }
@@ -22,28 +25,23 @@ function FoundItemsDirective() {
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var menu = this;
- 
-  menu.helloWorld = function() {
-    console.log("hello miami");
-    return "hello miami beach";
-  };
 
-  menu.check = "Hello World";
-
+  menu.check = "Hello Worlds";
+  //menu.Items = [{shortName: 'blah',description:"bleh"}];
+  
   menu.doIt = function () {
 //    console.log(menu.searchItem);
     var promise = MenuSearchService.getMatchedMenuItems(menu.searchItem);
     promise.then(function (response) {
-      menu.Items = response;
+      menu.Items = JSON.parse(JSON.stringify(response));
+      //console.log(menu.Items);
       return promise;
-    });
+    }).then( function(response) {console.log(response)});
+ };
 
- }
-
-menu.removeItem = function( itemIndex) {
-  console.log("I got here again");
-  menu.Items.splice(itemIndex,1);
-}
+menu.removeItem = function( itemIndex, arr) {
+  arr.splice(itemIndex,1);
+};
 
 };
 
@@ -62,7 +60,8 @@ function MenuSearchService($http, ApiBasePath) {
       var url_response = response.data.menu_items;
       var ender = response.data.menu_items.length;
       var found = [];
-      console.log(searchItem)
+      //console.log('inside service');
+      //console.log(url_response);
       searchItem = searchItem || "";
 
       for (var i=0.0; i< ender; i++) {
@@ -71,7 +70,7 @@ function MenuSearchService($http, ApiBasePath) {
          };
       };
      return found;
-      }).catch("This is not great");
+      });
     return promise;
 
     console.log("This is really great");
