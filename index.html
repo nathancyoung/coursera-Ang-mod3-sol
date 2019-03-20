@@ -2,14 +2,15 @@
 <html ng-app='NarrowItDownApp'>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="styles.css">
-    <title>Using $http Service</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/bootstrap.min.cs">
+    <title>Too Many Choices</title>
   </head>
   <body>
     <div class="container" ng-controller='NarrowItDownController as narrowIt'>
-    <h1>Narrow Down Your Chinese Menu Choice</h1>
+    <h1>Narrow Down Your Menu Choice</h1>
     <div >
-      <h3>List of Menu Categories</h3>
+      <h3>Why can't I find any Cookies?</h3>
       <div class="form-group">
         <input type="text" ng-model="narrowIt.searchItem" placeholder="search term" class="form-control">
       </div>
@@ -17,8 +18,9 @@
          <button class="btn btn-primary" ng-click="narrowIt.doIt();" >
              Narrow It Down For Me!</button>
       </div>
+      <br>
       <found-items 
-         items="narrowIt.Items" 
+         items="narrowIt.found" 
          on-remove="narrowIt.removeItem"> 
        </found-items>
     </div>

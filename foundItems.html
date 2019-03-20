@@ -1,6 +1,6 @@
-<ol>
+<ul>
         <li ng-repeat="item in items">
-          {{ item.name }} 
-           <button class="btn btn-primary" ng-click="narrowIt.removeItem( $index,items)">Remove Item</button>
+        	<button class="btn btn-primary" ng-click="narrowIt.removeItem( $index,items)">Remove Item</button>
+          <span class="shortname">  [{{item.short_name}}] </span>  <span class="items"> {{ item.name }} </span> 
         </li>
-</ol>
+</ul>

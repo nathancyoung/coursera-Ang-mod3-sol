@@ -1,6 +1,23 @@
 h1 {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
+
+h3 {
+  color: red
+}
+
+.items {
+  color: green
+}
+
+.shortname {
+  color: gray
+}
+
+.btn {
+  background: yellow
+}
+
 input[type="text"] {
   width: 200px;
   float: left;

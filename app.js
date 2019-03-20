@@ -12,7 +12,6 @@ function FoundItemsDirective() {
     templateUrl: 'foundItems.html',
     scope: {
     items: '=',
-    check: '<',
     onRemove: '&'
     },
     controller: NarrowItDownController,
@@ -26,17 +25,16 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var menu = this;
 
-  menu.check = "Hello Worlds";
   //menu.Items = [{shortName: 'blah',description:"bleh"}];
   
   menu.doIt = function () {
 //    console.log(menu.searchItem);
     var promise = MenuSearchService.getMatchedMenuItems(menu.searchItem);
     promise.then(function (response) {
-      menu.Items = JSON.parse(JSON.stringify(response));
+      menu.found = JSON.parse(JSON.stringify(response));
       //console.log(menu.Items);
       return promise;
-    }).then( function(response) {console.log(response)});
+    }); // .then( function(response) {console.log(response.length)});
  };
 
 menu.removeItem = function( itemIndex, arr) {
